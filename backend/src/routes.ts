@@ -4,6 +4,7 @@ import {
   productController,
   productCategoryController
 } from './ui/controllers/product/'
+import { restaurantController } from './ui/controllers/restaurant'
 
 
 class Routes {
@@ -14,11 +15,25 @@ class Routes {
   }
 
   init() {
+    this.productRoutes()
+    this.restaurantRoutes()
+  }
+
+  productRoutes() {
     this._app.get('/products', (req, res) => {
       return productController.list(req, res)
     })
     this._app.get('/product-categories', (req, res) => {
       return productCategoryController.list(req, res)
+    })
+  }
+
+  restaurantRoutes() {
+    this._app.get('/restaurants', (req, res) => {
+      return restaurantController.list(req, res)
+    })
+    this._app.get('/restaurants/:id', (req, res) => {
+      return restaurantController.detail(req, res)
     })
   }
 }
