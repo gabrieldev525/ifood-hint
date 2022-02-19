@@ -23,6 +23,9 @@ class Routes {
     this._app.get('/products', (req, res) => {
       return productController.list(req, res)
     })
+    this._app.get('/products/:id', (req, res) => {
+      return productController.detail(req, res)
+    })
     this._app.get('/product-categories', (req, res) => {
       return productCategoryController.list(req, res)
     })
