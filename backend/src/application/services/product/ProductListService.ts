@@ -23,6 +23,8 @@ export class ProductListService extends BaseService {
             id: parseInt(query.category)
           }
         }
+      if(query.restaurant && typeof query.restaurant == 'string')
+        filters.restaurant_id = parseInt(query.restaurant)
     } catch(error) {
       return
     }
