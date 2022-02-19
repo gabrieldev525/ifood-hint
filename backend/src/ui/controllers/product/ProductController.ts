@@ -8,6 +8,9 @@ import { ProductDetailService } from '@/application/services/product/ProductDeta
 class ProductController {
   async list(request: Request, response: Response): Promise<Response> {
     const productListService = await new ProductListService().execute(request)
+    if(!productListService)
+      return response.status(400).json({ message: 'Could not proccess the request' })
+
     return response.status(200).json(productListService)
   }
 
