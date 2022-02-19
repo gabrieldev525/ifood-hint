@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:12
+    container_name: ifood-pg
+    environment:
+      POSTGRES_DB: ifooddb
+      POSTGRES_USER: ifood
+      POSTGRES_PASSWORD: ifood
+    network_mode: bridge
+    ports:
+      - 5432:5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+volumes:
+  pg_data:
+    driver: local

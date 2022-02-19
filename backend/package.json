@@ -9,6 +9,7 @@
     "dev": "nodemon -r esm src/server.ts"
   },
   "dependencies": {
+    "@prisma/client": "^3.9.2",
     "@types/express": "^4.17.13",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
@@ -22,6 +23,7 @@
     "@types/node": "^17.0.18",
     "esm": "^3.2.25",
     "nodemon": "^2.0.15",
+    "prisma": "^3.9.2",
     "typescript": "^4.5.5"
   }
 }

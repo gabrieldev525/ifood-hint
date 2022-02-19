@@ -1,0 +1,181 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+// User
+model User {
+  id Int @id @default(autoincrement())
+  email String
+  password String
+  name String
+  last_login_dt DateTime?
+  age Int?
+
+  orders Order[]
+  coupons Coupon[]
+
+  user_addresses UserAddress[]
+
+  recomendation_ratings RecomendationRating[]
+  recomendations_product_exclude RecomendationProductExclude[]
+}
+
+model UserAddress {
+  id Int @id @default(autoincrement())
+  address String
+  zip_code String
+  number String
+
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  city City @relation(fields: [city_id], references: [id])
+  city_id Int
+
+  state State @relation(fields: [state_id], references: [id])
+  state_id Int
+
+  country Country @relation(fields: [country_id], references: [id])
+  country_id Int
+}
+
+// Location
+model City {
+  id Int @id @default(autoincrement())
+  name String
+
+  user_addresses UserAddress[]
+}
+
+model State {
+  id Int @id @default(autoincrement())
+  name String
+
+  user_addresses UserAddress[]
+}
+
+model Country {
+  id Int @id @default(autoincrement())
+  name String
+
+  user_addresses UserAddress[]
+}
+
+
+// Product
+model Product {
+  id Int @id @default(autoincrement())
+  name String
+  image String
+
+  categories ProductCategory[]
+
+  restaurant Restaurant @relation(fields: [restaurant_id], references: [id])
+  restaurant_id Int
+
+  ordem_items OrderItem[]
+  recomendations_product_exclude RecomendationProductExclude[]
+}
+
+model ProductCategory {
+  id Int @id @default(autoincrement())
+  name String
+
+  products Product[]
+}
+
+
+// Restaurant
+model Restaurant {
+  id Int @id @default(autoincrement())
+  name String
+  image String?
+
+  products Product[]
+}
+
+
+// Order
+model Order {
+  id Int @id @default(autoincrement())
+  total Decimal
+  purchase_date DateTime @default(now())
+  delivery_date DateTime?
+
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  coupon Coupon?
+
+  order_items OrderItem[]
+}
+
+model OrderItem {
+  id Int @id @default(autoincrement())
+  quantity Int
+  subtotal Decimal
+  product_price Decimal
+
+  order Order @relation(fields: [order_id], references: [id])
+  order_id Int
+
+  product Product @relation(fields: [product_id], references: [id])
+  product_id Int
+}
+
+
+// Coupon
+model Coupon {
+  id Int @id @default(autoincrement())
+  is_active Boolean @default(true)
+
+  // Coupon can be based on relative percent or a fix value of product value
+  discount_percent Decimal?
+  discount_value Decimal?
+
+  discount_type CouponDiscountType @relation(fields: [discoun_type_id], references: [id])
+  discoun_type_id Int
+
+  // Was implemented a simplified Coupon logic, considering that Coupon is applied to User independent of Product
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  order Order @relation(fields: [order_id], references: [id])
+  order_id Int
+}
+
+model CouponDiscountType {
+  id Int @id @default(autoincrement())
+  name String
+
+  coupons Coupon[]
+}
+
+// Recomendation Hint
+// TODO: Check rating method to recomendation
+model RecomendationRating {
+  id Int @id @default(autoincrement())
+  rate Int
+  date DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int
+}
+model RecomendationProductExclude {
+  id Int @id @default(autoincrement())
+  date DateTime @default(now())
+  is_active Boolean @default(true)
+
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int
+
+  product Product @relation(fields: [product_id], references: [id])
+  product_id Int
+}
