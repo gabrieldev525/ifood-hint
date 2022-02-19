@@ -8,15 +8,16 @@ import { RestaurantDetailService } from '@/application/services/restaurant/Resta
 class RestaurantController {
   async list(request: Request, response: Response): Promise<Response> {
     const restaurantListService = await new RestaurantListService().execute(request)
+    if(!restaurantListService)
+      return response.status(400).json({ message: 'Could not proccess the request' })
+
     return response.status(200).json(restaurantListService)
   }
 
   async detail(request: Request, response: Response): Promise<Response> {
     const restaurantDetailService = await new RestaurantDetailService().execute(request)
     if(!restaurantDetailService)
-      return response.status(400).json({
-        message: 'Could not proccess the request'
-      })
+      return response.status(400).json({ message: 'Could not proccess the request' })
 
     return response.status(200).json(restaurantDetailService)
   }
