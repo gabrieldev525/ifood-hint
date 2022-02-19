@@ -1,6 +1,9 @@
 // Third party
 import { Express } from 'express'
-import { productController } from './ui/controllers/product/'
+import {
+  productController,
+  productCategoryController
+} from './ui/controllers/product/'
 
 
 class Routes {
@@ -13,6 +16,9 @@ class Routes {
   init() {
     this._app.get('/products', (req, res) => {
       return productController.list(req, res)
+    })
+    this._app.get('/product-categories', (req, res) => {
+      return productCategoryController.list(req, res)
     })
   }
 }
