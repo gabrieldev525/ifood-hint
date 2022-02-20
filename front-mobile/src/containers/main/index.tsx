@@ -1,8 +1,8 @@
 // React
-import React, { useEffect } from 'react'
+import React from 'react'
+import { Text } from 'react-native'
 
 // Third party
-import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import {
@@ -15,34 +15,15 @@ import {
 // Project
 import { Home } from '@/containers/home'
 import { RecomendationProductList } from '../recomendation/product-list'
-import { Button } from 'react-native'
-import { COLORS } from '@/static/css/variables'
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
 
-// const FeedSubRoutes = () => {
-//   return (
-//     <Stack.Navigator
-//       initialRouteName='Main'
-//       screenOptions={{ headerShown: false }}>
-//       <Stack.Screen
-//         name='Main'
-//         component={FeedScreen} />
-//       <Stack.Screen
-//         name='NewsDetail'
-//         component={NewsDetail} />
-//       <Stack.Screen
-//         name='MovieDetail'
-//         component={MovieDetail} />
-//     </Stack.Navigator>
-//   )
-// }
-
-const ProfileSubRoutes = () => {
+const SearchSubRoutes = () => {
   return (
     <Stack.Navigator
-      screenOptions={{ headerShown: false }} >
+      screenOptions={{ headerShown: false }}
+      initialRouteName='Recomendation'>
       <Stack.Screen
         name='Recomendation'
         component={RecomendationProductList} />
@@ -50,10 +31,34 @@ const ProfileSubRoutes = () => {
   )
 }
 
+const OrderSubRoutes = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName='order-list'>
+      <Stack.Screen
+        name='order-list'
+        component={() => (<Text>Não implementado</Text>)} />
+    </Stack.Navigator>
+  )
+}
+
+const ProfileSubRoutes = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName='profile'>
+      <Stack.Screen
+        name='profile'
+        component={() => (<Text>Não implementado</Text>)} />
+    </Stack.Navigator>
+  )
+}
+
 export const MainScreen = () => {
   return (
     <Tab.Navigator
-      initialRouteName='Home'
+      initialRouteName='Buscar'
       screenOptions={{
         headerShown: false
       }} >
@@ -67,7 +72,7 @@ export const MainScreen = () => {
         }} />
       <Tab.Screen
         name='Buscar'
-        component={Home}
+        component={SearchSubRoutes}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Feather name='search' color={color} size={size} />
@@ -75,7 +80,7 @@ export const MainScreen = () => {
         }} />
       <Tab.Screen
         name='Pedidos'
-        component={Home}
+        component={OrderSubRoutes}
         options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name='contacts' color={color} size={size} />
@@ -83,7 +88,7 @@ export const MainScreen = () => {
         }} />
       <Tab.Screen
         name='Perfil'
-        component={Home}
+        component={ProfileSubRoutes}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name='person-outline' color={color} size={size} />
