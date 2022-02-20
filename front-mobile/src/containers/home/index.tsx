@@ -1,7 +1,6 @@
 // React
 import React, { useState } from 'react'
-import { Text } from 'react-native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { Text, TouchableOpacity } from 'react-native'
 import { CommonActions, useNavigation } from '@react-navigation/native'
 
 // Third party
@@ -48,8 +47,6 @@ export const Home = () => {
     { key: 'Mercados' },
     { key: 'Mercados' },
   ]
-  const navigation = useNavigation()
-
   const CategoryServices1 = [
     {
       key: 'Açai',
@@ -85,12 +82,22 @@ export const Home = () => {
     },
   ]
 
-  // State
+  // States
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  // Hooks
+  const navigation = useNavigation()
 
   const handleClickRecomendationButton = () => {
     navigation.dispatch(
       CommonActions.navigate('Buscar', { screen: 'Recomendation' })
+    )
+  }
+
+  const handleClickProductDetail = () => {
+    console.log('clicked')
+    navigation.dispatch(
+      CommonActions.navigate('product', { screen: 'ProductDetail' })
     )
   }
 
@@ -176,8 +183,10 @@ export const Home = () => {
 
         <CardSilder>
           {map(CategoryServices, (item, index) => (
-            <ContainerSliderCarousel key={index}
-              source={{ uri: item.img }} />
+            <TouchableOpacity activeOpacity={0.8} onPress={handleClickProductDetail}>
+              <ContainerSliderCarousel key={index}
+                source={{ uri: item.img }} />
+            </TouchableOpacity>
           ))}
         </CardSilder>
 
