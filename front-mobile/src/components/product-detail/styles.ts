@@ -9,7 +9,7 @@ export const Container = styled.View`
 `
 
 export const ContainerTop = styled.Image`
-  height: 400px;
+  height: 300px;
   width: 100%;
 `
 
@@ -25,7 +25,7 @@ export const ButtonNavigation = styled.TouchableOpacity`
 
 export const ContainerBottom = styled.ScrollView`
   flex: 1;
-  padding: 25px 24px 0;
+  padding: 10% 24px;
   background: ${COLORS.colorWhite};
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
@@ -38,14 +38,14 @@ export const ProductDescription = styled.View`
 `
 
 export const ContentTitle = styled.Text`
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
 `
 
 export const ContentDescription = styled.Text`
-  font-size: 18px;
+  font-size: 16px;
   color: ${COLORS.colorGreyLight};
-  margin: 20px 0;
+  margin: 15px 0;
 `
 
 export const ContentPrice = styled.Text`
@@ -56,7 +56,8 @@ export const ContentPrice = styled.Text`
 export const OrderRestaurant = styled.View`
   display: flex;
   justify-content: center;
-  border: 1px solid ${COLORS.colorGreyLight};
+  border-color: #A6A29F;
+  border-width: 1px;
   border-radius: 5px;
   padding: 16px 14px;
   min-height: 80px;
@@ -69,6 +70,8 @@ export const ContentRestaurantNameAndAvaliation = styled.View`
   flex-direction: row;
   border-bottom-color: ${COLORS.colorGreyLight};
   border-bottom-width: 1px;
+  border-style: dotted;
+  padding-bottom: 10px;
 `
 
 export const RestaurantName = styled.Text`
@@ -89,11 +92,12 @@ export const DeliveryDetail = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-
+  padding-top: 10px;
 `
 
 export const DeliveryHoursAndPrice = styled.Text`
   color: ${COLORS.colorGreyLight};
+  margin-left: 10px;
 `
 
 export const OrderTextAvaliation = styled.View`
