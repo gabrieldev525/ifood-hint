@@ -24,7 +24,7 @@ const ProfileSubRoutes = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: true
+        headerShown: false
       }} >
       <Stack.Screen
         name='Recomendation'
@@ -37,12 +37,12 @@ export const Routes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='Home'
+        initialRouteName='Recomendation'
         screenOptions={{
           headerShown: false
         }}>
         <Stack.Screen name='Home' component={MainScreen} />
-        <Stack.Screen name='Recomendation' component={ProfileSubRoutes} />
+        <Stack.Screen name='Recomendation' options={{headerShown: false}} component={ProfileSubRoutes} />
       </Stack.Navigator>
     </NavigationContainer>
   )
