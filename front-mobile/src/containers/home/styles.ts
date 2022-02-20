@@ -20,6 +20,7 @@ export const Container = styled.ScrollView`
   flex-direction: column;
   flex: 1;
   width: 100%;
+  background: #fff;
 `
 
 export const ContainerBtnFloat = styled.TouchableOpacity`
@@ -30,10 +31,11 @@ export const ContainerBtnFloat = styled.TouchableOpacity`
   justify-content: center;
   height: 60px;
   width: 60px;
-  bottom: 10px;
+  bottom: 20px;
   right: 10px;
   border-radius: 50px;
-  background: red;
+  background: #EA1D2C;
+  elevation: 3;
 `
 
 export const ContainerHeader = styled.View`
@@ -41,7 +43,8 @@ export const ContainerHeader = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 10px 20px;
+  margin: 10px 0;
 `
 
 export const ContainerAddress = styled.View`
@@ -51,8 +54,9 @@ export const ContainerAddress = styled.View`
 `
 
 export const TextAddress = styled.Text`
-  font-size: 14px;
+  font-size: 16px;
   color: ${COLORS.colorBlack};
+  margin-right: 5px;
 `
 
 export const ContentQrCode = styled.View`
@@ -61,7 +65,7 @@ export const ContentQrCode = styled.View`
 
 export const ContainerListServices = styled.ScrollView`
   width: 100%;
-  margin-bottom: 10px;
+  padding: 0px 20px 10px;
 `
 
 export const ContentListServices = styled.Text`
@@ -69,16 +73,16 @@ export const ContentListServices = styled.Text`
   flex-direction: row;
   font-size: 16px;
   font-weight: bold;
-  border-bottom-color: ${COLORS.colorRed};
-  border-bottom-width: 1px;
+  border-bottom-color: ${props => props.highlight ? COLORS.colorRed : COLORS.colorGreyLight};
+  border-bottom-width: ${props => props.highlight ? '1px' : '0px'};
   padding-bottom: 5px;
-  margin-left: 10px;
-  color: ${COLORS.colorRed};
+  margin-right: 10px;
+  color: ${props => props.highlight ? COLORS.colorRed : COLORS.colorGreyLight};
 `
 
 export const ContainerListFilters = styled.ScrollView`
   width: 100%;
-  margin: 10px 0 20px;
+  padding: 10px 20px;
 `
 
 export const ContainerFilters = styled.View`
@@ -86,11 +90,9 @@ export const ContainerFilters = styled.View`
   align-items: center;
   justify-content: space-evenly;
   flex-direction: row;
-  height: 25px;
-  margin: 3px 0;
-  margin-left: 10px;
-  padding: 0 10px;
-  border-radius: 12px;
+  margin-right: 10px;
+  border-radius: 24px;
+  padding: 5px 10px;
   border: .5px solid ${COLORS.colorGreyLight};
 `
 
@@ -99,10 +101,10 @@ export const ContainerCategoryServices = styled.View<ICategoryServices>`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  height: 40px;
-  width: 60px;
+  height: 30px;
+  width: 80px;
   margin: 15px 0;
-  margin-left: 10px;
+  margin-right: 10px;
   border-radius: 5px;
   background: ${(props: ICategoryServices) => props.bgColor};
   border: .5px solid ${COLORS.colorGreyLight};
@@ -124,32 +126,42 @@ export const Divider = styled.View`
 export const ContainerSliderCarousel = styled.Image`
   display: flex;
   flex-direction: row;
-  height: 130px;
-  width: 300px;
-  margin: 5px 0;
+  height: 150px;
+  width: 95%;
   border-radius: 10px;
 `
 
 export const ContainerMainLastStores = styled.ScrollView`
   width: 100%;
+  margin-top: 5%;
+  padding: 0 20px;
 `
 
 export const ContainerLastStores = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+`
+
+export const SectionTitle = styled.Text`
+  font-size: 20px;
+  color: #000;
+  font-weight: 700;
+  margin-left: 20px;
+  margin-top: 20px;
 `
 
 export const ContentAvatarStores = styled.View<ICategoryServices>`
   height: 70px;
   width: 70px;
-  margin: 15px 0 3px;
-  margin-left: 10px;
   border-radius: 50px;
   background: ${(props: ICategoryServices) => props.bgColor};
 `
 
 export const ContentTitleStores = styled.Text`
-  font-size: 15px;
-  margin-left: 10px;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #A6A29F;
 `

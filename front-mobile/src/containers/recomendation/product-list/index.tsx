@@ -38,7 +38,10 @@ export const RecomendationProductList = () => {
             <FontAwesome name="heart-o" size={24} color="#A6A29F" />
           </ProductListHeader>
           <ProductList>
-            <ScrollView horizontal>
+            <ScrollView
+              horizontal
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}>
               <ProductItem />
               <ProductItem />
               <ProductItem />
@@ -53,7 +56,10 @@ export const RecomendationProductList = () => {
             <FontAwesome name="heart-o" size={24} color="#A6A29F" />
           </ProductListHeader>
           <ProductList>
-            <ScrollView horizontal>
+            <ScrollView
+              horizontal
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}>
               <ProductItem />
               <ProductItem />
               <ProductItem />
@@ -68,7 +74,10 @@ export const RecomendationProductList = () => {
             <FontAwesome name="heart-o" size={24} color="#A6A29F" />
           </ProductListHeader>
           <ProductList>
-            <ScrollView horizontal>
+            <ScrollView
+              horizontal
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}>
               <ProductItem />
               <ProductItem />
               <ProductItem />

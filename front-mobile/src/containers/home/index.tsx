@@ -8,8 +8,7 @@ import {
   Entypo,
   MaterialIcons,
   MaterialCommunityIcons,
-  FontAwesome5,
-  Ionicons
+  FontAwesome5
 } from '@expo/vector-icons'
 import CardSilder from 'react-native-cards-slider'
 import { map } from 'lodash'
@@ -36,15 +35,14 @@ import {
   ContainerBtnFloat,
   ContainerListFilters,
   Divider,
-  ContainerCategoryServicesImg
+  SectionTitle
 } from './styles'
-import { RecomendationProductList } from '../recomendation/product-list'
 import { CommonActions, useNavigation } from '@react-navigation/native'
 
 const Stack = createNativeStackNavigator()
 
 export const Home = () => {
-  const test = [
+  const categories = [
     { key: 'Restaurantes' },
     { key: 'Mercados' },
     { key: 'Bebidas' },
@@ -89,15 +87,17 @@ export const Home = () => {
     },
   ]
 
-  const testandoBoy = () => {
+  const handleClickRecomendationButton = () => {
     navigation.dispatch(
-      CommonActions.navigate('Recomendation', { screen: 'Recomendation' })
+      CommonActions.navigate('Buscar', { screen: 'Recomendation' })
     )
   }
 
   return (
     <>
-      <ContainerBtnFloat onPress={testandoBoy}>
+      <ContainerBtnFloat
+        onPress={handleClickRecomendationButton}
+        activeOpacity={.8}>
         <MaterialCommunityIcons name='silverware-fork-knife' size={25} color={COLORS.colorWhite} />
       </ContainerBtnFloat>
       <Container>
@@ -106,20 +106,26 @@ export const Home = () => {
             <TextAddress>ILabs</TextAddress>
             <Entypo
               name='chevron-down'
-              size={14} color={COLORS.colorRed} />
+              size={18} color={COLORS.colorRed} />
           </ContainerAddress>
           <ContentQrCode>
             <MaterialIcons name='qr-code-scanner' size={24} color={COLORS.colorRed} />
           </ContentQrCode>
         </ContainerHeader>
 
-        <ContainerListServices horizontal>
-          {map(test, (item, index) => (
-            <ContentListServices key={index}>{item.key}</ContentListServices>
+        <ContainerListServices
+          horizontal
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}>
+          {map(categories, (item, index) => (
+            <ContentListServices key={index} highlight={index == 0}>{item.key}</ContentListServices>
           ))}
         </ContainerListServices>
 
-        <ContainerListFilters horizontal>
+        <ContainerListFilters
+          horizontal
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}>
           <ContainerFilters>
             <Text>Ordenar</Text>
             <Entypo
@@ -154,12 +160,12 @@ export const Home = () => {
           </ContainerFilters>
         </ContainerListFilters>
 
-        <ContainerListServices horizontal>
+        <ContainerListServices
+          horizontal
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}>
           {map(CategoryServices1, (item, index) => (
-            <ContainerCategoryServices bgColor={item.bgColor} />
-            //   <ContainerCategoryServicesImg key={index}
-            //     source={{ uri: item.img }} />
-            // </ContainerCategoryServices>
+            <ContainerCategoryServices key={index} bgColor={item.bgColor} />
           ))}
         </ContainerListServices>
 
@@ -170,7 +176,11 @@ export const Home = () => {
           ))}
         </CardSilder>
 
-        <ContainerMainLastStores horizontal>
+        <SectionTitle>Últimas Lojas</SectionTitle>
+        <ContainerMainLastStores
+          horizontal
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}>
           {map(CategoryServices, (item, index) => (
             <ContainerLastStores key={index}>
               <ContentAvatarStores bgColor={item.bgColor} />
