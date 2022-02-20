@@ -7,7 +7,7 @@ export const Container = styled.View`
   flex: 1;
   width: 100%;
   background: #fff;
-  padding-top: 15%;
+  padding-top: 3%;
 `
 
 export const HeaderContainer = styled.View`
