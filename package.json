@@ -5,6 +5,7 @@
   "dependencies": {
     "@commitlint/cli": "^16.2.1",
     "@commitlint/config-conventional": "^16.2.1",
+    "@react-navigation/bottom-tabs": "^6.2.0",
     "husky": "^7.0.4"
   },
   "private": true,
