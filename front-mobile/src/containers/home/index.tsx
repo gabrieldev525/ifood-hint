@@ -1,7 +1,7 @@
 // React
-import React from 'react'
+import React, { useState } from 'react'
 import { Text, TouchableOpacity } from 'react-native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { CommonActions, useNavigation } from '@react-navigation/native'
 
 // Third party
 import {
@@ -15,6 +15,7 @@ import { map } from 'lodash'
 
 // Project
 import { COLORS } from '@/static/css/variables'
+import { EvaluationModal } from '@/components/Modal/EvaluationModal'
 import SlidePromo01 from '@/static/images/image-banner.png'
 import SlidePromo02 from '@/static/images/image-banner-02.png'
 import SlidePromo03 from '@/static/images/image-banner-03.png'
@@ -46,9 +47,6 @@ import {
   Divider,
   SectionTitle
 } from './styles'
-import { CommonActions, useNavigation } from '@react-navigation/native'
-
-const Stack = createNativeStackNavigator()
 
 export const Home = () => {
   const categories = [
@@ -58,9 +56,6 @@ export const Home = () => {
     { key: 'Mercados' },
     { key: 'Mercados' },
   ]
-
-  const navigation = useNavigation()
-
   const CategoryServices1 = [
     {
       key: 'Açai',
@@ -105,6 +100,12 @@ export const Home = () => {
     },
   ]
 
+  // States
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  // Hooks
+  const navigation = useNavigation()
+
   const handleClickRecomendationButton = () => {
     navigation.dispatch(
       CommonActions.navigate('Buscar', { screen: 'Recomendation' })
@@ -120,6 +121,10 @@ export const Home = () => {
 
   return (
     <>
+      {isModalOpen &&
+        <EvaluationModal
+          onClickClose={() => setIsModalOpen(false)} />
+      }
       <ContainerBtnFloat
         onPress={handleClickRecomendationButton}
         activeOpacity={.8}>
@@ -209,7 +214,7 @@ export const Home = () => {
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}>
           {map(CategoryServices, (item, index) => (
-            <ContainerLastStores key={index}>
+            <ContainerLastStores key={index} onPress={() => setIsModalOpen(true)}>
               <ContentAvatarStores bgColor={item.bgColor} />
               <ContentTitleStores>{item.key}</ContentTitleStores>
             </ContainerLastStores>

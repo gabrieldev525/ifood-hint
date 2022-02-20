@@ -131,7 +131,7 @@ export const ContainerMainLastStores = styled.ScrollView`
   padding: 0 20px;
 `
 
-export const ContainerLastStores = styled.View`
+export const ContainerLastStores = styled.TouchableOpacity`
   display: flex;
   flex-direction: column;
   align-items: center;
