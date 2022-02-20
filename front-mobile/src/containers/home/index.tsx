@@ -1,7 +1,8 @@
 // React
-import React from 'react'
+import React, { useState } from 'react'
 import { Text } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { CommonActions, useNavigation } from '@react-navigation/native'
 
 // Third party
 import {
@@ -15,6 +16,7 @@ import { map } from 'lodash'
 
 // Project
 import { COLORS } from '@/static/css/variables'
+import { EvaluationModal } from '@/components/Modal/EvaluationModal'
 
 // Local
 import {
@@ -37,9 +39,6 @@ import {
   Divider,
   SectionTitle
 } from './styles'
-import { CommonActions, useNavigation } from '@react-navigation/native'
-
-const Stack = createNativeStackNavigator()
 
 export const Home = () => {
   const categories = [
@@ -49,7 +48,6 @@ export const Home = () => {
     { key: 'Mercados' },
     { key: 'Mercados' },
   ]
-
   const navigation = useNavigation()
 
   const CategoryServices1 = [
@@ -87,6 +85,9 @@ export const Home = () => {
     },
   ]
 
+  // State
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const handleClickRecomendationButton = () => {
     navigation.dispatch(
       CommonActions.navigate('Buscar', { screen: 'Recomendation' })
@@ -95,6 +96,10 @@ export const Home = () => {
 
   return (
     <>
+      {isModalOpen &&
+        <EvaluationModal
+          onClickClose={() => setIsModalOpen(false)} />
+      }
       <ContainerBtnFloat
         onPress={handleClickRecomendationButton}
         activeOpacity={.8}>
@@ -182,7 +187,7 @@ export const Home = () => {
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}>
           {map(CategoryServices, (item, index) => (
-            <ContainerLastStores key={index}>
+            <ContainerLastStores key={index} onPress={() => setIsModalOpen(true)}>
               <ContentAvatarStores bgColor={item.bgColor} />
               <ContentTitleStores>{item.key}</ContentTitleStores>
             </ContainerLastStores>
