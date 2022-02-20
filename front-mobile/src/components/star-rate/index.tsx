@@ -8,15 +8,34 @@ import { FontAwesome } from '@expo/vector-icons'
 import {
   RateStarContainer
 } from './styles'
+import { IStarRate } from './types'
 
-export const StarRate = () => {
+export const StarRate = ({ rate, onClick }: IStarRate) => {
+
+  const renderStars = () => {
+    const elements: React.ReactNode[] = []
+
+    for(let i = 1; i <= 5; i++) {
+      let color = '#A6A29F'
+      if(rate != null && i <= rate)
+        color = '#FFAC33'
+
+      elements.push(
+        <FontAwesome
+          key={i}
+          name='star'
+          size={36}
+          color={color}
+          onPress={event => onClick?.(event, i)} />
+      )
+    }
+
+    return elements
+  }
+
   return (
     <RateStarContainer>
-      <FontAwesome name="star" size={30} color="#FFAC33" />
-      <FontAwesome name="star" size={30} color="#FFAC33" />
-      <FontAwesome name="star" size={30} color="#FFAC33" />
-      <FontAwesome name="star" size={30} color="#A6A29F" />
-      <FontAwesome name="star" size={30} color="#A6A29F" />
+      {renderStars()}
     </RateStarContainer>
   )
 }

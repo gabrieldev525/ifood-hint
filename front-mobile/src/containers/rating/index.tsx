@@ -22,11 +22,17 @@ import {
 } from './styles'
 import { StarRate } from '@/components/star-rate'
 import { Tag } from '@/components/tag'
+import { RateComment } from '@/components/rate-comment'
 
 export const Rating = () => {
   // state
   const [likedDelivery, setLikedDelivery] = useState<boolean | null>(null)
   const [deliveryFeedbackOptions, setDeliveryFeedbackOptions] = useState<string[]>([])
+  const [orderRate, setOrderRate] = useState(null)
+  const [orderFeedbackOptions, setOrderFeedbackOptions] = useState<string[]>([])
+  const [sugestionFeedbackOptions, setSugestionFeedbackOptions] = useState<string[]>([])
+  const [sugestionRate, setSugestionRate] = useState(null)
+  const [deliveryComment, setDeliveryComment] = useState('')
 
   const handleClickDeliveryFeedbackOption = (event, id) => {
     const temp = [...deliveryFeedbackOptions]
@@ -37,6 +43,46 @@ export const Rating = () => {
       temp.push(id)
 
     setDeliveryFeedbackOptions(temp)
+  }
+
+  const handleChangeOrderRate = (event, rate) => {
+    setOrderRate(rate)
+  }
+
+  const handleClickOrderFeedbackOption = (event, id) => {
+    const temp = [...orderFeedbackOptions]
+    const idx = temp.indexOf(id)
+    if(idx != -1) {
+      temp.splice(idx, 1)
+    } else
+      temp.push(id)
+
+    setOrderFeedbackOptions(temp)
+  }
+
+  const handleChangeSugestionRate = (event, rate) => {
+    setSugestionRate(rate)
+  }
+
+  const handleClickSugestionFeedbackOption = (event, id) => {
+    const temp = [...sugestionFeedbackOptions]
+    const idx = temp.indexOf(id)
+    if(idx != -1) {
+      temp.splice(idx, 1)
+    } else
+      temp.push(id)
+
+    setSugestionFeedbackOptions(temp)
+  }
+
+  const isSubmitButtonDisabled = () => {
+    if(orderRate == null || (orderRate < 3 && !deliveryComment))
+      return true
+
+    if(likedDelivery == null || (likedDelivery == false && deliveryFeedbackOptions.length == 0))
+      return true
+
+    return false
   }
 
   return (
@@ -61,14 +107,101 @@ export const Rating = () => {
           <Title>O que você achou do pedido?</Title>
           <Subtitle>Escolha de 1 a 5 estrelas para classificar.</Subtitle>
 
-          <StarRate />
+          <StarRate rate={orderRate} onClick={handleChangeOrderRate} />
+
+          {
+            (orderRate && orderRate >= 5) ? (
+              <RowGroup>
+                <Subtitle>Do que você gostou?</Subtitle>
+
+                <TagContainer>
+                  <Tag
+                    text='Sabor'
+                    id='flavor'
+                    onClick={handleClickOrderFeedbackOption}
+                    isSelected={orderFeedbackOptions.indexOf('flavor') != -1} />
+                  <Tag
+                    text='Bem temperada'
+                    id='well_seasoned'
+                    onClick={handleClickOrderFeedbackOption}
+                    isSelected={orderFeedbackOptions.indexOf('well_seasoned') != -1} />
+                </TagContainer>
+              </RowGroup>
+            ) : orderRate != null && (
+              <RowGroup>
+                <Subtitle>O que pode melhorar?</Subtitle>
+
+                <TagContainer>
+                  <Tag
+                    text='Sabor'
+                    id='flavor'
+                    onClick={handleClickOrderFeedbackOption}
+                    isSelected={orderFeedbackOptions.indexOf('flavor') != -1} />
+                  <Tag
+                    text='Tempero'
+                    id='seasoning'
+                    onClick={handleClickOrderFeedbackOption}
+                    isSelected={orderFeedbackOptions.indexOf('seasoning') != -1} />
+                </TagContainer>
+              </RowGroup>
+            )
+          }
+
+        </RowGroup>
+        {
+          orderRate != null && (
+            <RateComment
+              value={deliveryComment}
+              onChange={text => setDeliveryComment(text)} />
+          )
+        }
+
+        <RowGroup>
+
         </RowGroup>
 
         <RowGroup>
           <Title>Nossa sugestão agradou você?</Title>
           <Subtitle>Escolha de 1 a 5 estrelas para classificar.</Subtitle>
 
-          <StarRate />
+          <StarRate rate={sugestionRate} onClick={handleChangeSugestionRate} />
+          {
+            (sugestionRate && sugestionRate >= 5) ? (
+              <RowGroup>
+                <Subtitle>Do que você gostou?</Subtitle>
+
+                <TagContainer>
+                  <Tag
+                    text='Sabor'
+                    id='flavor'
+                    onClick={handleClickSugestionFeedbackOption}
+                    isSelected={sugestionFeedbackOptions.indexOf('flavor') != -1} />
+                  <Tag
+                    text='Bem temperada'
+                    id='well_seasoned'
+                    onClick={handleClickSugestionFeedbackOption}
+                    isSelected={sugestionFeedbackOptions.indexOf('well_seasoned') != -1} />
+                </TagContainer>
+              </RowGroup>
+            ) : sugestionRate != null && (
+              <RowGroup>
+                <Subtitle>O que pode melhorar?</Subtitle>
+
+                <TagContainer>
+                  <Tag
+                    text='Sabor'
+                    id='flavor'
+                    onClick={handleClickSugestionFeedbackOption}
+                    isSelected={sugestionFeedbackOptions.indexOf('flavor') != -1} />
+                  <Tag
+                    text='Tempero'
+                    id='seasoning'
+                    onClick={handleClickSugestionFeedbackOption}
+                    isSelected={sugestionFeedbackOptions.indexOf('seasoning') != -1} />
+                </TagContainer>
+              </RowGroup>
+            )
+          }
         </RowGroup>
 
         <RowGroup>
@@ -151,8 +284,8 @@ export const Rating = () => {
           }
         </RowGroup>
 
-        <SubmitButton disabled={true}>
-          <SubmitButtonText disabled={true}>Avaliar</SubmitButtonText>
+        <SubmitButton disabled={isSubmitButtonDisabled()}>
+          <SubmitButtonText disabled={isSubmitButtonDisabled()}>Avaliar</SubmitButtonText>
         </SubmitButton>
       </Container>
     </ScrollView>

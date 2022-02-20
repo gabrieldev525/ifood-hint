@@ -6,6 +6,8 @@ export const Container = styled.SafeAreaView`
   display: flex;
   flex-direction: column;
   padding: 5%;
+  flex: 1;
+  background: #fff;
 `
 export const Header = styled.View`
   display: flex;
