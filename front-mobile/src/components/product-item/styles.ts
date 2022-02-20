@@ -1,7 +1,7 @@
 // Third party
 import styled from 'styled-components/native'
 
-export const ProductItem = styled.View`
+export const ProductItem = styled.TouchableOpacity`
   width: 200px;
   padding: 10px;
   background: #fff;

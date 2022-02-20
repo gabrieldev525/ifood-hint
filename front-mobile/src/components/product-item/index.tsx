@@ -4,6 +4,7 @@ import { Text } from 'react-native'
 
 // Third party
 import { FontAwesome } from '@expo/vector-icons'
+import { CommonActions, useNavigation } from '@react-navigation/native'
 
 // Project
 import productIcon from '@/static/images/product-icon.png'
@@ -22,8 +23,16 @@ import {
 } from './styles'
 
 const ProductItem = ({ productImg }) => {
+  const navigation = useNavigation()
+
+  const handleClickCard = () => {
+    navigation.dispatch(
+      CommonActions.navigate('product', { screen: 'ProductDetail' })
+    )
+  }
+
   return (
-    <ProductItemContainer>
+    <ProductItemContainer onPress={handleClickCard} activeOpacity={.8}>
       <ProductHeader>
         <ProductIcon source={productIcon} />
         <ProductHeaderInfo>
