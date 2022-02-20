@@ -103,7 +103,7 @@ export const ProductDetail = () => {
             <Text>1</Text>
             <AntDesign name='plus' size={20} color={COLORS.colorRed} />
           </ButtonQuantity>
-          <ButtonAddToCart onPress={handleClickAvaliation}>
+          <ButtonAddToCart onPress={handleClickAvaliation} activeOpacity={0.8}>
             <ButtonText>Adicionar</ButtonText>
             <ButtonText>R$21,00</ButtonText>
           </ButtonAddToCart>
