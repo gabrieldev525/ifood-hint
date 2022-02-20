@@ -96,18 +96,12 @@ export const ContainerFilters = styled.View`
   border: .5px solid ${COLORS.colorGreyLight};
 `
 
-export const ContainerCategoryServices = styled.View<ICategoryServices>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  height: 30px;
+export const ContainerCategoryServices = styled.Image`
+  height: 70px;
   width: 80px;
   margin: 15px 0;
   margin-right: 10px;
   border-radius: 5px;
-  background: ${(props: ICategoryServices) => props.bgColor};
-  border: .5px solid ${COLORS.colorGreyLight};
 `
 
 export const ContainerCategoryServicesImg = styled.Image`

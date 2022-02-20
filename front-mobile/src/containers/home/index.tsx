@@ -15,6 +15,15 @@ import { map } from 'lodash'
 
 // Project
 import { COLORS } from '@/static/css/variables'
+import SlidePromo01 from '@/static/images/image-banner.png'
+import SlidePromo02 from '@/static/images/image-banner-02.png'
+import SlidePromo03 from '@/static/images/image-banner-03.png'
+import Category01 from '@/static/images/section-category-1.png'
+import Category02 from '@/static/images/section-category-2.png'
+import Category03 from '@/static/images/section-category-3.png'
+import Category04 from '@/static/images/section-category-4.png'
+import Category05 from '@/static/images/section-category-5.png'
+import Category06 from '@/static/images/section-category-6.png'
 
 // Local
 import {
@@ -55,35 +64,44 @@ export const Home = () => {
   const CategoryServices1 = [
     {
       key: 'Açai',
-      bgColor: '#A0CA3B',
-      img: 'https://images.unsplash.com/photo-1498557850523-fd3d118b962e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YWNhaXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
+      img: Category01
     },
     {
       key: 'Lanches',
-      bgColor: '#DA5D69',
-      img: 'https://images.unsplash.com/photo-1498557850523-fd3d118b962e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YWNhaXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
+      img: Category02
     },
     {
       key: 'Pizza',
-      bgColor: '#EA1D2C',
-      img: 'https://www.imagensempng.com.br/wp-content/uploads/2021/06/Acai-no-pote-Png-1024x1024.png'
+      img: Category03
+    },
+    {
+      key: 'Açai',
+      img: Category04
+    },
+    {
+      key: 'Lanches',
+      img: Category05
+    },
+    {
+      key: 'Pizza',
+      img: Category06
     },
   ]
   const CategoryServices = [
     {
-      key: 'Mercado',
+      key: 'Loja X',
       bgColor: '#A0CA3B',
-      img: 'https://images.unsplash.com/photo-1630175860333-5131bda75071?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+      img: SlidePromo01
     },
     {
-      key: 'Lanches',
+      key: 'Loja Y',
       bgColor: '#DA5D69',
-      img: 'https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+      img: SlidePromo02
     },
     {
-      key: 'Pizza',
+      key: 'Loja Z',
       bgColor: '#EA1D2C',
-      img: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+      img: SlidePromo03
     },
   ]
 
@@ -144,7 +162,7 @@ export const Home = () => {
             <FontAwesome5
               name='walking'
               size={14} color={COLORS.colorBlack} />
-            <Text>Pra retirar</Text>
+            <Text style={{ marginLeft: 5 }}>Pra retirar</Text>
           </ContainerFilters>
 
           <ContainerFilters>
@@ -172,7 +190,7 @@ export const Home = () => {
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}>
           {map(CategoryServices1, (item, index) => (
-            <ContainerCategoryServices key={index} bgColor={item.bgColor} />
+            <ContainerCategoryServices key={index} source={item.img} />
           ))}
         </ContainerListServices>
 
@@ -180,7 +198,7 @@ export const Home = () => {
           {map(CategoryServices, (item, index) => (
             <TouchableOpacity activeOpacity={0.8} onPress={handleClickProductDetail}>
               <ContainerSliderCarousel key={index}
-                source={{ uri: item.img }} />
+                source={item.img} />
             </TouchableOpacity>
           ))}
         </CardSilder>
