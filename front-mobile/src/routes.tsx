@@ -60,10 +60,17 @@ export const Routes = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName='Buscar'
+        initialRouteName='Início'
         screenOptions={{
-          headerShown: false
-        }} >
+          headerShown: false,
+          tabBarActiveTintColor: '#000',
+          tabBarInactiveTintColor: '#A6A29F',
+          tabBarStyle: {
+            height: 65,
+            paddingTop: 10,
+            paddingBottom: 10
+          }
+        }}>
         <Tab.Screen
           name='Início'
           component={Home}
