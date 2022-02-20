@@ -1,6 +1,6 @@
 // React
 import React from 'react'
-import { Text } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 // Third party
@@ -93,6 +93,13 @@ export const Home = () => {
     )
   }
 
+  const handleClickProductDetail = () => {
+    console.log('clicked')
+    navigation.dispatch(
+      CommonActions.navigate('product', { screen: 'ProductDetail' })
+    )
+  }
+
   return (
     <>
       <ContainerBtnFloat
@@ -171,8 +178,10 @@ export const Home = () => {
 
         <CardSilder>
           {map(CategoryServices, (item, index) => (
-            <ContainerSliderCarousel key={index}
-              source={{ uri: item.img }} />
+            <TouchableOpacity activeOpacity={0.8} onPress={handleClickProductDetail}>
+              <ContainerSliderCarousel key={index}
+                source={{ uri: item.img }} />
+            </TouchableOpacity>
           ))}
         </CardSilder>
 
