@@ -1,6 +1,6 @@
 // React
 import React from 'react'
-import { ScrollView, Text } from 'react-native'
+import { Text } from 'react-native'
 import { CommonActions, useNavigation } from '@react-navigation/native'
 
 // Third-party
@@ -38,9 +38,9 @@ import {
 export const ProductDetail = () => {
   const navigation = useNavigation()
 
-  const handleClickAvaliation = () => {
+  const handleClickAdd = () => {
     navigation.dispatch(
-      CommonActions.navigate('Início', { screen: 'Home' })
+      CommonActions.navigate('product', { screen: 'Rating' })
     )
   }
 
@@ -103,7 +103,7 @@ export const ProductDetail = () => {
             <Text>1</Text>
             <AntDesign name='plus' size={20} color={COLORS.colorRed} />
           </ButtonQuantity>
-          <ButtonAddToCart onPress={handleClickAvaliation} activeOpacity={0.8}>
+          <ButtonAddToCart onPress={handleClickAdd} activeOpacity={0.8}>
             <ButtonText>Adicionar</ButtonText>
             <ButtonText>R$21,00</ButtonText>
           </ButtonAddToCart>

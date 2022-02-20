@@ -17,6 +17,7 @@ import { Home } from '@/containers/home'
 import { RecomendationProductList } from '@/containers/recomendation/product-list'
 import { ProductDetail } from '@/components/product-detail'
 import { NotImplemented } from '@/containers/not-implemented'
+import { Rating } from './containers/rating'
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -41,6 +42,9 @@ const ProductSubRoutes = () => {
       <Stack.Screen
         name='ProductDetail'
         component={ProductDetail} />
+      <Stack.Screen
+        name='Rating'
+        component={Rating} />
     </Stack.Navigator>
   )
 }

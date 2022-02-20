@@ -5,6 +5,7 @@ import { ScrollView, Text } from 'react-native'
 // Third party
 import { MaterialIcons } from '@expo/vector-icons'
 import { RadioButton } from 'react-native-paper'
+import { CommonActions, useNavigation } from '@react-navigation/native'
 
 // Local
 import {
@@ -17,8 +18,8 @@ import {
   SubmitButton,
   SubmitButtonText,
   Subtitle,
-  TagContainer,
-  Title
+  Title,
+  TagContainer
 } from './styles'
 import { StarRate } from '@/components/star-rate'
 import { Tag } from '@/components/tag'
@@ -33,6 +34,8 @@ export const Rating = () => {
   const [sugestionFeedbackOptions, setSugestionFeedbackOptions] = useState<string[]>([])
   const [sugestionRate, setSugestionRate] = useState(null)
   const [deliveryComment, setDeliveryComment] = useState('')
+
+  const navigation = useNavigation()
 
   const handleClickDeliveryFeedbackOption = (event, id) => {
     const temp = [...deliveryFeedbackOptions]
@@ -83,6 +86,12 @@ export const Rating = () => {
       return true
 
     return false
+  }
+
+  const handleClickSubmit = () => {
+    navigation.dispatch(
+      CommonActions.navigate('main', { screen: 'Início' })
+    )
   }
 
   return (
@@ -284,7 +293,7 @@ export const Rating = () => {
           }
         </RowGroup>
 
-        <SubmitButton disabled={isSubmitButtonDisabled()}>
+        <SubmitButton disabled={isSubmitButtonDisabled()} onPress={handleClickSubmit}>
           <SubmitButtonText disabled={isSubmitButtonDisabled()}>Avaliar</SubmitButtonText>
         </SubmitButton>
       </Container>
