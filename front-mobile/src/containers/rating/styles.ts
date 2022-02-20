@@ -63,3 +63,10 @@ export const SubmitButton = styled.TouchableOpacity`
 export const SubmitButtonText = styled.Text`
   color: ${props => props.disabled ? '#3F3E3E' : '#fff'};
 `
+
+export const TagContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 10px;
+`
