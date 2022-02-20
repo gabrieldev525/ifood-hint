@@ -53,7 +53,6 @@ const ProfileSubRoutes = () => {
 export const MainScreen = () => {
   return (
     <Tab.Navigator
-      initialRouteName='Home'
       screenOptions={{
         headerShown: false
       }} >
