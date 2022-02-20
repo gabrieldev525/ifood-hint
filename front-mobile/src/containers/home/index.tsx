@@ -1,6 +1,7 @@
 // React
 import React from 'react'
 import { Text } from 'react-native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 // Third party
 import {
@@ -37,6 +38,10 @@ import {
   Divider,
   ContainerCategoryServicesImg
 } from './styles'
+import { RecomendationProductList } from '../recomendation/product-list'
+import { CommonActions, useNavigation } from '@react-navigation/native'
+
+const Stack = createNativeStackNavigator()
 
 export const Home = () => {
   const test = [
@@ -46,6 +51,8 @@ export const Home = () => {
     { key: 'Mercados' },
     { key: 'Mercados' },
   ]
+
+  const navigation = useNavigation()
 
   const CategoryServices1 = [
     {
@@ -82,107 +89,96 @@ export const Home = () => {
     },
   ]
 
+  const testandoBoy = () => {
+    navigation.dispatch(
+      CommonActions.navigate('Recomendation', { screen: 'Recomendation' })
+    )
+  }
+
   return (
-    <Container>
-      <ContainerBtnFloat>
+    <>
+      <ContainerBtnFloat onPress={testandoBoy}>
         <MaterialCommunityIcons name='silverware-fork-knife' size={25} color={COLORS.colorWhite} />
       </ContainerBtnFloat>
+      <Container>
+        <ContainerHeader>
+          <ContainerAddress>
+            <TextAddress>ILabs</TextAddress>
+            <Entypo
+              name='chevron-down'
+              size={14} color={COLORS.colorRed} />
+          </ContainerAddress>
+          <ContentQrCode>
+            <MaterialIcons name='qr-code-scanner' size={24} color={COLORS.colorRed} />
+          </ContentQrCode>
+        </ContainerHeader>
 
-      <ContainerHeader>
-        <ContainerAddress>
-          <TextAddress>ILabs</TextAddress>
-          <Entypo
-            name='chevron-down'
-            size={14} color={COLORS.colorRed} />
-        </ContainerAddress>
-        <ContentQrCode>
-          <MaterialIcons name='qr-code-scanner' size={24} color={COLORS.colorRed} />
-        </ContentQrCode>
-      </ContainerHeader>
+        <ContainerListServices horizontal>
+          {map(test, (item, index) => (
+            <ContentListServices key={index}>{item.key}</ContentListServices>
+          ))}
+        </ContainerListServices>
 
-      <ContainerListServices horizontal>
-        {map(test, (item, index) => (
-          <ContentListServices key={index}>{item.key}</ContentListServices>
-        ))}
-      </ContainerListServices>
+        <ContainerListFilters horizontal>
+          <ContainerFilters>
+            <Text>Ordenar</Text>
+            <Entypo
+              name='chevron-down'
+              size={14} color={COLORS.colorBlack} />
+          </ContainerFilters>
 
-      <ContainerListFilters horizontal>
-        <ContainerFilters>
-          <Text>Ordenar</Text>
-          <Entypo
-            name='chevron-down'
-            size={14} color={COLORS.colorBlack} />
-        </ContainerFilters>
+          <ContainerFilters>
+            <FontAwesome5
+              name='walking'
+              size={14} color={COLORS.colorBlack} />
+            <Text>Pra retirar</Text>
+          </ContainerFilters>
 
-        <ContainerFilters>
-          <FontAwesome5
-            name='walking'
-            size={14} color={COLORS.colorBlack} />
-          <Text>Pra retirar</Text>
-        </ContainerFilters>
+          <ContainerFilters>
+            <Text>Entrega grátis</Text>
+          </ContainerFilters>
 
-        <ContainerFilters>
-          <Text>Entrega grátis</Text>
-        </ContainerFilters>
+          <ContainerFilters>
+            <Text>Vale-refeição</Text>
+            <Entypo
+              name='chevron-down'
+              size={14} color={COLORS.colorBlack} />
+          </ContainerFilters>
 
-        <ContainerFilters>
-          <Text>Vale-refeição</Text>
-          <Entypo
-            name='chevron-down'
-            size={14} color={COLORS.colorBlack} />
-        </ContainerFilters>
+          <ContainerFilters>
+            <Text>Distância</Text>
+            <Divider />
+            <Entypo
+              name='chevron-down'
+              size={14} color={COLORS.colorBlack} />
+          </ContainerFilters>
+        </ContainerListFilters>
 
-        <ContainerFilters>
-          <Text>Distância</Text>
-          <Divider />
-          <Entypo
-            name='chevron-down'
-            size={14} color={COLORS.colorBlack} />
-        </ContainerFilters>
-      </ContainerListFilters>
+        <ContainerListServices horizontal>
+          {map(CategoryServices1, (item, index) => (
+            <ContainerCategoryServices bgColor={item.bgColor} />
+            //   <ContainerCategoryServicesImg key={index}
+            //     source={{ uri: item.img }} />
+            // </ContainerCategoryServices>
+          ))}
+        </ContainerListServices>
 
-      <ContainerListServices horizontal>
-        {map(CategoryServices1, (item, index) => (
-          <ContainerCategoryServices bgColor={item.bgColor} />
-          //   <ContainerCategoryServicesImg key={index}
-          //     source={{ uri: item.img }} />
-          // </ContainerCategoryServices>
-        ))}
-      </ContainerListServices>
+        <CardSilder>
+          {map(CategoryServices, (item, index) => (
+            <ContainerSliderCarousel key={index}
+              source={{ uri: item.img }} />
+          ))}
+        </CardSilder>
 
-      <CardSilder>
-        {map(CategoryServices, (item, index) => (
-          <ContainerSliderCarousel key={index}
-            source={{ uri: item.img }} />
-        ))}
-      </CardSilder>
-
-      <ContainerMainLastStores horizontal>
-        {map(CategoryServices, (item, index) => (
-          <ContainerLastStores key={index}>
-            <ContentAvatarStores bgColor={item.bgColor} />
-            <ContentTitleStores>{item.key}</ContentTitleStores>
-          </ContainerLastStores>
-        ))}
-      </ContainerMainLastStores>
-
-      <ContainerMainLastStores horizontal>
-        {map(CategoryServices, (item, index) => (
-          <ContainerLastStores key={index}>
-            <ContentAvatarStores bgColor={item.bgColor} />
-            <ContentTitleStores>{item.key}</ContentTitleStores>
-          </ContainerLastStores>
-        ))}
-      </ContainerMainLastStores>
-
-      <ContainerMainLastStores horizontal>
-        {map(CategoryServices, (item, index) => (
-          <ContainerLastStores key={index}>
-            <ContentAvatarStores bgColor={item.bgColor} />
-            <ContentTitleStores>{item.key}</ContentTitleStores>
-          </ContainerLastStores>
-        ))}
-      </ContainerMainLastStores>
-    </Container>
+        <ContainerMainLastStores horizontal>
+          {map(CategoryServices, (item, index) => (
+            <ContainerLastStores key={index}>
+              <ContentAvatarStores bgColor={item.bgColor} />
+              <ContentTitleStores>{item.key}</ContentTitleStores>
+            </ContainerLastStores>
+          ))}
+        </ContainerMainLastStores>
+      </Container>
+    </>
   )
 }

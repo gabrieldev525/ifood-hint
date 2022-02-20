@@ -30,7 +30,7 @@ export const ContainerBtnFloat = styled.TouchableOpacity`
   justify-content: center;
   height: 60px;
   width: 60px;
-  bottom: 30px;
+  bottom: 10px;
   right: 10px;
   border-radius: 50px;
   background: red;
@@ -78,7 +78,7 @@ export const ContentListServices = styled.Text`
 
 export const ContainerListFilters = styled.ScrollView`
   width: 100%;
-  margin-bottom: 10px;
+  margin: 10px 0 20px;
 `
 
 export const ContainerFilters = styled.View`

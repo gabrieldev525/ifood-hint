@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 // Third party
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import {
   Fontisto,
   Feather,
@@ -13,54 +14,36 @@ import {
 
 // Project
 import { Home } from '@/containers/home'
+import { MainScreen } from './containers/main'
+import { RecomendationProductList } from './containers/recomendation/product-list'
 
 const Tab = createBottomTabNavigator()
+const Stack = createNativeStackNavigator()
+
+const ProfileSubRoutes = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: true
+      }} >
+      <Stack.Screen
+        name='Recomendation'
+        component={RecomendationProductList} />
+    </Stack.Navigator>
+  )
+}
 
 export const Routes = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator
+      <Stack.Navigator
         initialRouteName='Home'
         screenOptions={{
-          headerShown: false,
-        }} >
-        <Tab.Screen
-          name='Home'
-          component={Home}
-          options={{
-            tabBarLabel: 'Home',
-            tabBarIcon: ({ color, size }) => (
-              <Fontisto name='home' color={color} size={size} />
-            ),
-          }} />
-        <Tab.Screen
-          name='Buscar'
-          component={Home}
-          options={{
-            tabBarLabel: 'Home',
-            tabBarIcon: ({ color, size }) => (
-              <Feather name='search' color={color} size={size} />
-            ),
-          }} />
-        <Tab.Screen
-          name='Pedidos'
-          component={Home}
-          options={{
-            tabBarLabel: 'Home',
-            tabBarIcon: ({ color, size }) => (
-              <AntDesign name='contacts' color={color} size={size} />
-            ),
-          }} />
-        <Tab.Screen
-          name='Perfil'
-          component={Home}
-          options={{
-            tabBarLabel: 'Home',
-            tabBarIcon: ({ color, size }) => (
-              <Ionicons name='person-outline' color={color} size={size} />
-            ),
-          }} />
-      </Tab.Navigator>
+          headerShown: false
+        }}>
+        <Stack.Screen name='Home' component={MainScreen} />
+        <Stack.Screen name='Recomendation' component={ProfileSubRoutes} />
+      </Stack.Navigator>
     </NavigationContainer>
   )
 }
