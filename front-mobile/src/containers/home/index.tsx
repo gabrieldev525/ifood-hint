@@ -89,7 +89,7 @@ export const Home = () => {
 
   const handleClickRecomendationButton = () => {
     navigation.dispatch(
-      CommonActions.navigate('Recomendation', { screen: 'Recomendation' })
+      CommonActions.navigate('Buscar', { screen: 'Recomendation' })
     )
   }
 
