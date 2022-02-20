@@ -6,7 +6,6 @@ import { Text } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 
 // Project
-import productImage from '@/static/images/image-product-01.png'
 import productIcon from '@/static/images/product-icon.png'
 
 // Local
@@ -22,7 +21,7 @@ import {
   ProductMiniText
 } from './styles'
 
-const ProductItem = () => {
+const ProductItem = ({ productImg }) => {
   return (
     <ProductItemContainer>
       <ProductHeader>
@@ -39,7 +38,7 @@ const ProductItem = () => {
           </ProductHeaderMiniInfo>
         </ProductHeaderInfo>
       </ProductHeader>
-      <ProductImage source={productImage} />
+      <ProductImage source={productImg} />
       <Text>Nome de um prato qualquer</Text>
       <Text>R$29,45</Text>
     </ProductItemContainer>
