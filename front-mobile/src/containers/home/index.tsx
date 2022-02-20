@@ -93,6 +93,12 @@ export const Home = () => {
     )
   }
 
+  const handleClickProductDetail = () => {
+    navigation.dispatch(
+      CommonActions.navigate('Início', { screen: 'ProductDetail' })
+    )
+  }
+
   return (
     <>
       <ContainerBtnFloat
@@ -171,7 +177,7 @@ export const Home = () => {
 
         <CardSilder>
           {map(CategoryServices, (item, index) => (
-            <ContainerSliderCarousel key={index}
+            <ContainerSliderCarousel onPress={handleClickProductDetail} key={index}
               source={{ uri: item.img }} />
           ))}
         </CardSilder>
