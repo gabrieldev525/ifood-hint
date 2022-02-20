@@ -1,6 +1,5 @@
 // React
 import React from 'react'
-import { Text } from 'react-native'
 
 // Third party
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -11,12 +10,13 @@ import {
   AntDesign,
   Ionicons
 } from '@expo/vector-icons'
+import { NavigationContainer } from '@react-navigation/native'
 
 // Project
 import { Home } from '@/containers/home'
 import { RecomendationProductList } from '@/containers/recomendation/product-list'
-import { NavigationContainer } from '@react-navigation/native'
 import { ProductDetail } from '@/components/product-detail'
+import { NotImplemented } from '@/containers/not-implemented'
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -64,7 +64,7 @@ const OrderSubRoutes = () => {
       initialRouteName='order-list'>
       <Stack.Screen
         name='order-list'
-        component={() => (<Text>Não implementado</Text>)} />
+        component={NotImplemented} />
     </Stack.Navigator>
   )
 }
@@ -76,7 +76,7 @@ const ProfileSubRoutes = () => {
       initialRouteName='profile'>
       <Stack.Screen
         name='profile'
-        component={() => (<Text>Não implementado</Text>)} />
+        component={NotImplemented} />
     </Stack.Navigator>
   )
 }
